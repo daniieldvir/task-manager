@@ -9,6 +9,8 @@ export interface TasksStateModel {
   tasks: Task[];
   loading: boolean;
   error: string | null;
+  totalCount: number;
+  lastPageReached: boolean;
 }
 
 @Injectable()
@@ -18,6 +20,8 @@ export interface TasksStateModel {
     tasks: [],
     loading: false,
     error: null,
+    totalCount: 0,
+    lastPageReached: false,
   },
 })
 export class TasksState {
@@ -27,13 +31,19 @@ export class TasksState {
   getTasks(ctx: StateContext<TasksStateModel>, action: TasksActions.GetTasks) {
     ctx.patchState({ loading: true });
 
-    return this.taskService.getTasks().pipe(
-      tap((tasks) => {
-        ctx.patchState({ tasks: tasks, loading: false, error: null });
+    return this.taskService.getTasks(action.page, action.pageSize).pipe(
+      tap(({ tasks, count }) => {
+        ctx.patchState({
+          tasks: tasks,
+          totalCount: count || 0,
+          lastPageReached: tasks.length < action.pageSize,
+          loading: false,
+          error: null,
+        });
       }),
       catchError((error) => {
         ctx.patchState({ loading: false, error: error.message });
-        return of([] as Task[]);
+        return of({ tasks: [], count: 0 });
       })
     );
   }
@@ -43,13 +53,9 @@ export class TasksState {
     ctx.patchState({ loading: true });
 
     return this.taskService.createTask(action.task.title, action.task.description).pipe(
-      tap((newTask) => {
-        const currentTasks = ctx.getState().tasks;
-        ctx.patchState({
-          tasks: [...currentTasks, newTask],
-          loading: false,
-          error: null,
-        });
+      tap(() => {
+        ctx.patchState({ error: null });
+        return ctx.dispatch(new TasksActions.GetTasks(0, 3));
       }),
       catchError((error) => {
         ctx.patchState({ loading: false, error: error.message });
@@ -63,16 +69,9 @@ export class TasksState {
     ctx.patchState({ loading: true });
 
     return this.taskService.updateTask(action.task).pipe(
-      tap((updatedTask) => {
-        const currentTasks = ctx.getState().tasks;
-        const updatedTasks = currentTasks.map((task) =>
-          task.id === updatedTask.id ? updatedTask : task
-        );
-        ctx.patchState({
-          tasks: updatedTasks,
-          loading: false,
-          error: null,
-        });
+      tap(() => {
+        ctx.patchState({ error: null });
+        return ctx.dispatch(new TasksActions.GetTasks(0, 3));
       }),
       catchError((error) => {
         ctx.patchState({ loading: false, error: error.message });
@@ -87,9 +86,8 @@ export class TasksState {
 
     return this.taskService.deleteTask(action.task.id).pipe(
       tap(() => {
-        const currentTasks = ctx.getState().tasks;
-        const updatedTasks = currentTasks.filter((task) => task.id !== action.task.id);
-        ctx.patchState({ tasks: updatedTasks, loading: false, error: null });
+        ctx.patchState({ error: null });
+        return ctx.dispatch(new TasksActions.GetTasks(0, 3));
       }),
       catchError((error) => {
         ctx.patchState({ loading: false, error: error.message });

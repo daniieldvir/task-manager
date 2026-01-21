@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { TasksSelectors } from '../../../state/tasks/tasks.selectors';
 import { select, Store } from '@ngxs/store';
 import { Task, TaskFormData } from '../../../models/task.models';
 import { AuthActions } from '../../../state/auth/auth.action';
 import { AuthSelectors } from '../../../state/auth/auth.selectors';
 import { TasksActions } from '../../../state/tasks/tasks.action';
-
 import { TaskFormComponent } from './task-form/task-form.component';
-import { ThemeToggleComponent } from '../../shard/theme-toggle/theme-toggle.component';
-import { ButtonComponent } from '../../shard/button/button.component';
-import { TaskItemComponent } from '../../shard/task-item/task-item.component';
-import { DeleteConfirmationComponent } from '../../shard/delete-confirmation/delete-confirmation.component';
-import { PlaceholderCardComponent } from '../../shard/placeholder-card/placeholder-card.component';
+import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
+import { ButtonComponent } from '../../shared/button/button.component';
+import { TaskItemComponent } from '../../shared/task-item/task-item.component';
+import { DeleteConfirmationComponent } from '../../shared/delete-confirmation/delete-confirmation.component';
+import { PlaceholderCardComponent } from '../../shared/placeholder-card/placeholder-card.component';
+import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { SkeletonLoaderComponent } from '../../shared/skeleton-loader/skeleton-loader.component';
 
 
 @Component({
@@ -26,6 +27,8 @@ import { PlaceholderCardComponent } from '../../shard/placeholder-card/placehold
     TaskFormComponent,
     DeleteConfirmationComponent,
     PlaceholderCardComponent,
+    PaginationComponent,
+    SkeletonLoaderComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -44,19 +47,19 @@ export class DashboardComponent {
   public isDeleteOpen = signal<boolean>(false);
   public taskToDelete = signal<Task | null>(null);
 
+  protected readonly lastPageReached = select(TasksSelectors.slices.lastPageReached);
+  protected readonly totalCount = select(TasksSelectors.slices.totalCount);
+  public currentPage = signal<number>(0);
+  public readonly pageSize = 3;
+
+  protected readonly taskAmount = computed(() => this.tasks().length);
+
   constructor() {
     this.store.dispatch(new AuthActions.BootstrapAuth());
+    this.store.dispatch(new TasksActions.GetTasks(0, this.pageSize));
   }
 
-  onTaskCreated(taskData: TaskFormData) {
-    this.store.dispatch(new TasksActions.CreateTask(taskData));
-  }
-
-  onTaskUpdated(task: Task) {
-    this.store.dispatch(new TasksActions.UpdateTask(task));
-  }
-
-  onTaskDeleted(task: Task) {
+  public onTaskDeleted(task: Task) {
     this.store.dispatch(new TasksActions.DeleteTask(task));
   }
 
@@ -73,25 +76,9 @@ export class DashboardComponent {
 
   public handleFormConfirmed(taskData: TaskFormData) {
     if (taskData.id) {
-      // Update existing task - safely get current task first
-      const current = this.currentTask();
-
-      if (!current) {
-        console.error('Cannot update task: currentTask is null');
-        return;
-      }
-
-      const task: Task = {
-        id: taskData.id,
-        title: taskData.title,
-        description: taskData.description,
-        user_id: current.user_id,
-        created_at: current.created_at,
-      };
-      this.onTaskUpdated(task);
+      this.store.dispatch(new TasksActions.UpdateTask(taskData));
     } else {
-      // Create new task
-      this.onTaskCreated(taskData);
+      this.store.dispatch(new TasksActions.CreateTask(taskData));
     }
     this.isOpen.set(false);
     this.currentTask.set(null);
@@ -124,5 +111,11 @@ export class DashboardComponent {
 
   public logout() {
     this.store.dispatch(new AuthActions.Logout());
+  }
+
+  public goToPage(page: number) {
+    this.currentPage.set(page);
+    this.store.dispatch(new TasksActions.GetTasks(page, this.pageSize));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

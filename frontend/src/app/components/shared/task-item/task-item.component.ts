@@ -16,7 +16,6 @@ export class TaskItemComponent {
 
   edit = output<Task>();
   delete = output<Task>();
-  view = output<Task>();
 
   onEdit() {
     this.edit.emit(this.task());
@@ -24,10 +23,6 @@ export class TaskItemComponent {
 
   onDelete() {
     this.delete.emit(this.task());
-  }
-
-  onView() {
-    this.view.emit(this.task());
   }
 
   formatDate(dateString: string): string {

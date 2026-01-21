@@ -15,15 +15,14 @@
     </form>
 
     <div class="divider">
-      <span>או התחבר באמצעות</span>
+      <span>Or login with</span>
     </div>
 
     @if (oauthError) {
     <div class="oauth-error">{{ oauthError }}</div>
     }
 
-    <div class="oauth-buttons">
-      <app-oauth-buttons (loadingChange)="isOAuthLoading = $event" (errorChange)="oauthError = $event">
-      </app-oauth-buttons>
+    <div class="oauth-buttons" [class.loading]="isOAuthLoading">
+      <app-oauth-buttons></app-oauth-buttons>
     </div>
   </div>

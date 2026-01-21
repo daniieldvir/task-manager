@@ -1,9 +1,0 @@
-<button [type]="type()" [class]="classes" [disabled]="disabled()" (click)="onClick()">
-  @if (iconName()) {
-    <ng-icon [name]="iconName()!"></ng-icon>
-  }
-  @if (label()) {
-    <span>{{ label() }}</span>
-  }
-  <ng-content></ng-content>
-</button>

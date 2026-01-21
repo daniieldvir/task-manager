@@ -2,8 +2,8 @@ import { Component, effect, ElementRef, inject, input, output, signal, viewChild
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Task, TaskFormData } from '../../../../models/task.models';
-import { ModalComponent } from '../../../shard/modal/modal.component';
-import { ButtonComponent } from '../../../shard/button/button.component';
+import { ModalComponent } from '../../../shared/modal/modal.component';
+import { ButtonComponent } from '../../../shared/button/button.component';
 
 
 @Component({

@@ -2,17 +2,27 @@
 import { Request, Response } from "express";
 import { supabase } from "../supabaseClient";
 
-// קריאת כל המשימות של המשתמש המחובר
+// קריאת משימות עם Pagination
 export const getTasks = async (req: Request, res: Response) => {
-    const user = req.user;
-    const { data, error } = await supabase
+    const page = parseInt(req.query.page as string) || 0;
+    const pageSize = parseInt(req.query.pageSize as string) || 3;
+
+    const from = page * pageSize;
+    const to = from + pageSize - 1;
+
+    const { data, error, count } = await supabase
         .from('tasks')
-        .select('*')
-        .eq('user_id', req.user!.id);
+        .select('*', { count: 'exact' })
+        .eq('user_id', req.user!.id)
+        .order('created_at', { ascending: false })
+        .range(from, to);
 
     if (error) return res.status(500).json({ error: error.message });
 
-    res.json(data);
+    res.json({
+        tasks: data || [],
+        count: count || 0
+    });
 };
 
 // New task

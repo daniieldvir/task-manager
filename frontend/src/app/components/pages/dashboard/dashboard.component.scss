@@ -9,7 +9,6 @@
     flex-direction: column;
     gap: 2rem;
     min-height: 100vh;
-    height: 100%;
     background: var(--dashboard-bg);
     position: relative;
     overflow-x: hidden;
@@ -63,6 +62,12 @@
       &:hover {
         border-color: var(--border-secondary);
         box-shadow: 0 6px 16px var(--card-shadow);
+      }
+
+      .user-info-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
       }
 
       p {
@@ -130,6 +135,8 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      flex: 1;
+      height: 100%;
 
       @media (max-width: 768px) {
         padding-top: 0.75rem;
@@ -138,6 +145,35 @@
       app-button {
         align-self: end;
         margin-bottom: 1rem;
+      }
+
+      .error-container {
+        background: rgba(239, 68, 68, 0.1);
+        border-left: 4px solid #ef4444;
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1.5rem;
+        backdrop-filter: blur(8px);
+        animation: slideIn 0.3s ease-out;
+
+        p {
+          color: #ef4444;
+          margin: 0;
+          font-weight: 500;
+          font-size: 0.95rem;
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .tasks-list {
@@ -150,6 +186,12 @@
           gap: 0.875rem;
         }
       }
+    }
+
+    .dashboard-pagination {
+      display: block;
+      margin-top: auto;
+      padding-top: 1rem;
     }
   }
 }

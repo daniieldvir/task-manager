@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { AuthActions } from '../../../state/auth/auth.action';
-import { ButtonComponent } from '../../shard/button/button.component';
+import { ButtonComponent } from '../../shared/button/button.component';
 import { OauthButtonsComponent } from './oauth-buttons/oauth-buttons.component';
 
 @Component({

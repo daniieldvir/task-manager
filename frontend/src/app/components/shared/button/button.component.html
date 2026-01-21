@@ -1,0 +1,12 @@
+<button [type]="type()" [class]="classes" [disabled]="disabled() || loading()" (click)="onClick()">
+  @if (loading()) {
+  <div class="spinner"></div>
+  }
+  @if (!loading() && iconName()) {
+  <ng-icon [name]="iconName()!"></ng-icon>
+  }
+  @if (label()) {
+  <span>{{ label() }}</span>
+  }
+  <ng-content></ng-content>
+</button>

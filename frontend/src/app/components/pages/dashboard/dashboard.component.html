@@ -8,18 +8,29 @@
   </header>
 
   <div class="user-info">
-    <p>
-      Welcome: <strong>{{ loggedInUser()?.email || 'User' }}</strong>
-    </p>
+    <div class="user-info-content">
+      <p>
+        Welcome: <strong>{{ loggedInUser()?.email || 'User' }}</strong>
+      </p>
+      <p>Showing <strong>{{ tasks().length }}</strong> of <strong>{{ totalCount() }}</strong> tasks</p>
+    </div>
     <app-button variant="secondary" (clicked)="logout()" size="small">Logout</app-button>
   </div>
 
   <section class="body">
     <app-button class="add-task-btn" variant="primary" iconName="heroPlus" (clicked)="addTask()">Add Task</app-button>
+
+    @if (error()) {
+    <div class="error-container">
+      <p>{{ error() }}</p>
+    </div>
+    }
     @if (loading()) {
-    <app-placeholder-card title="Loading tasks..." message="Loading tasks..." />
+    <div class="skeleton-list">
+      <app-skeleton-loader [count]="3" height="120px" borderRadius="1rem" />
+    </div>
     } @else {
-    @if (tasks().length === 0) {
+    @if (taskAmount() === 0) {
     <div class="placeholder-card empty-tasks">
       <app-placeholder-card title="No tasks yet" message="Get started by creating your first task!" />
     </div>
@@ -36,6 +47,9 @@
     }
     }
   </section>
+
+  <app-pagination class="dashboard-pagination" [currentPage]="currentPage()" [totalCount]="totalCount()"
+    [pageSize]="pageSize" (pageChange)="goToPage($event)" />
 
   @if (isOpen()) {
   <app-task-form [isOpen]="isOpen()" [title]="formTitle()" [task]="currentTask()" (closed)="close()"
