@@ -1,6 +1,12 @@
-<app-modal class="delete-confirmation-modal" [isOpen]="isOpen()" title="Delete Task" (closed)="close()">
+<app-modal
+  class="delete-confirmation-modal"
+  [isOpen]="isOpen()"
+  title="Delete Task"
+  (closed)="close()"
+>
   <p class="confirmation-message">
-    Are you sure you want to delete <strong>"{{ task()?.title }}"</strong>? This action cannot be undone.
+    Are you sure you want to delete <strong>"{{ task()?.title }}"</strong>? This action cannot be
+    undone.
   </p>
 
   <div footer class="form-actions">

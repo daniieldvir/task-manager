@@ -1,4 +1,8 @@
-<button class="theme-toggle" (click)="toggleTheme()"
-  [attr.aria-label]="isDark ? 'Switch to light mode' : 'Switch to dark mode'" type="button">
+<button
+  class="theme-toggle"
+  (click)="toggleTheme()"
+  [attr.aria-label]="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+  type="button"
+>
   <ng-icon [name]="isDark ? 'heroSun' : 'heroMoon'" class="theme-icon"></ng-icon>
 </button>

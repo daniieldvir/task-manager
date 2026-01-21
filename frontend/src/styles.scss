@@ -16,47 +16,47 @@ $desktop: 1280px;
   --bg-gradient-start: #f9fafb;
   --bg-gradient-mid: #ffffff;
   --bg-gradient-end: #f1f5f9;
-  
+
   // Text colors
   --text-primary: #1a1a2e;
   --text-secondary: #4b5563;
   --text-tertiary: #6b7280;
   --text-muted: #9ca3af;
   --text-inverse: #ffffff;
-  
+
   // Border colors
   --border-primary: #e5e7eb;
   --border-secondary: #d1d5db;
   --border-muted: rgba(148, 163, 184, 0.2);
-  
+
   // Button colors
   --btn-primary-bg: #6366f1;
   --btn-primary-hover: #4f46e5;
   --btn-primary-text: #f9fafb;
-  
+
   --btn-secondary-bg: #f3f4f6;
   --btn-secondary-hover: #e5e7eb;
   --btn-secondary-text: #111827;
   --btn-secondary-border: #d1d5db;
-  
+
   --btn-danger-bg: #dc2626;
   --btn-danger-hover: #b91c1c;
   --btn-danger-text: #f9fafb;
-  
+
   --btn-icon-bg: rgba(148, 163, 184, 0.1);
   --btn-icon-hover: rgba(148, 163, 184, 0.2);
   --btn-icon-text: #4b5563;
-  
+
   // Card/Modal colors
   --card-bg: #ffffff;
   --card-border: rgba(148, 163, 184, 0.2);
   --card-shadow: rgba(0, 0, 0, 0.1);
-  
+
   --modal-bg: #ffffff;
   --modal-backdrop: rgba(15, 23, 42, 0.4);
   --modal-border: rgba(148, 163, 184, 0.3);
   --modal-shadow: rgba(0, 0, 0, 0.2);
-  
+
   // Dashboard specific
   --dashboard-bg: linear-gradient(135deg, #f9fafb 0%, #ffffff 50%, #f1f5f9 100%);
   --dashboard-card-bg: rgba(255, 255, 255, 0.8);
@@ -66,15 +66,19 @@ $desktop: 1280px;
   --dashboard-user-bg: rgba(249, 250, 251, 0.6);
   --dashboard-user-text: #4b5563;
   --dashboard-user-accent: #2563eb;
-  
+
   // Task item colors
-  --task-item-bg: radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), rgba(255, 255, 255, 0.98));
+  --task-item-bg: radial-gradient(
+    circle at top left,
+    rgba(37, 99, 235, 0.08),
+    rgba(255, 255, 255, 0.98)
+  );
   --task-item-border: rgba(148, 163, 184, 0.2);
   --task-item-shadow: rgba(0, 0, 0, 0.1);
   --task-title-text: #1f2937;
   --task-description-text: #4b5563;
   --task-date-text: #6b7280;
-  
+
   // Login page
   --login-bg: linear-gradient(135deg, #3b82f6, #2563eb);
   --login-form-bg: #ffffff;
@@ -83,7 +87,7 @@ $desktop: 1280px;
   --login-input-focus: #2563eb;
   --login-input-focus-shadow: rgba(37, 99, 235, 0.18);
   --login-input-focus-bg: #f9fbff;
-  
+
   // Accent colors
   --accent-blue: #2563eb;
   --accent-blue-light: #60a5fa;
@@ -100,47 +104,47 @@ $desktop: 1280px;
   --bg-gradient-start: #0f172a;
   --bg-gradient-mid: #020617;
   --bg-gradient-end: #0a0f1e;
-  
+
   // Text colors
   --text-primary: #f9fafb;
   --text-secondary: #e5e7eb;
   --text-tertiary: #cbd5e1;
   --text-muted: #94a3b8;
   --text-inverse: #1a1a2e;
-  
+
   // Border colors
   --border-primary: rgba(148, 163, 184, 0.2);
   --border-secondary: rgba(148, 163, 184, 0.3);
   --border-muted: rgba(148, 163, 184, 0.15);
-  
+
   // Button colors
   --btn-primary-bg: #6366f1;
   --btn-primary-hover: #4f46e5;
   --btn-primary-text: #f9fafb;
-  
+
   --btn-secondary-bg: #1e293b;
   --btn-secondary-hover: #0f172a;
   --btn-secondary-text: #e5e7eb;
   --btn-secondary-border: rgba(55, 65, 81, 0.9);
-  
+
   --btn-danger-bg: #dc2626;
   --btn-danger-hover: #b91c1c;
   --btn-danger-text: #f9fafb;
-  
+
   --btn-icon-bg: rgba(148, 163, 184, 0.1);
   --btn-icon-hover: rgba(148, 163, 184, 0.2);
   --btn-icon-text: #cbd5f5;
-  
+
   // Card/Modal colors
   --card-bg: rgba(30, 41, 59, 0.6);
   --card-border: rgba(148, 163, 184, 0.2);
   --card-shadow: rgba(0, 0, 0, 0.4);
-  
+
   --modal-bg: #0b1220;
   --modal-backdrop: rgba(15, 23, 42, 0.65);
   --modal-border: rgba(148, 163, 184, 0.3);
   --modal-shadow: rgba(15, 23, 42, 0.8);
-  
+
   // Dashboard specific
   --dashboard-bg: linear-gradient(135deg, #0f172a 0%, #020617 50%, #0a0f1e 100%);
   --dashboard-card-bg: rgba(30, 41, 59, 0.6);
@@ -150,15 +154,19 @@ $desktop: 1280px;
   --dashboard-user-bg: rgba(30, 41, 59, 0.4);
   --dashboard-user-text: #cbd5e1;
   --dashboard-user-accent: #60a5fa;
-  
+
   // Task item colors
-  --task-item-bg: radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), rgba(15, 23, 42, 0.98));
+  --task-item-bg: radial-gradient(
+    circle at top left,
+    rgba(37, 99, 235, 0.16),
+    rgba(15, 23, 42, 0.98)
+  );
   --task-item-border: rgba(148, 163, 184, 0.25);
   --task-item-shadow: rgba(15, 23, 42, 0.8);
   --task-title-text: #e5e7eb;
   --task-description-text: #cbd5f5;
   --task-date-text: #9ca3af;
-  
+
   // Login page
   --login-bg: linear-gradient(135deg, #1e3c72, #2a5298);
   --login-form-bg: #ffffff;
@@ -167,7 +175,7 @@ $desktop: 1280px;
   --login-input-focus: #2563eb;
   --login-input-focus-shadow: rgba(37, 99, 235, 0.18);
   --login-input-focus-bg: #f9fbff;
-  
+
   // Accent colors
   --accent-blue: #3b82f6;
   --accent-blue-light: #60a5fa;

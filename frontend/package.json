@@ -9,10 +9,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "npm run build:gh-pages && ngh --dir=dist/new/browser",
-    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,html,scss,css,json,md}\" --log-level warn",
+
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,html,scss,css,json,md}\" --log-level warn",
-    "lint": "eslint \"src/**/*.{ts,tsx}\"",
-    "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix"
+     "format": "npx prettier --write \"src/**/*.{ts,js,html,scss,css,json}\""
   },
   "prettier": {
     "printWidth": 100,
@@ -62,12 +61,8 @@
     "@angular/build": "^21.0.3",
     "@angular/cli": "^21.0.3",
     "@angular/compiler-cli": "^21.0.0",
-    "@eslint/js": "^9.39.2",
-    "@typescript-eslint/eslint-plugin": "^8.53.1",
-    "@typescript-eslint/parser": "^8.53.1",
-    "eslint": "^9.0.0",
     "jsdom": "^27.1.0",
-    "prettier": "^3.7.0",
+    "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
   }

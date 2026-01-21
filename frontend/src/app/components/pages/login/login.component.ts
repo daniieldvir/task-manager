@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
+import { select, Store } from '@ngxs/store';
 import { AuthActions } from '../../../state/auth/auth.action';
+import { AuthSelectors } from '../../../state/auth/auth.selectors';
 import { ButtonComponent } from '../../shard/button/button.component';
 
 @Component({
@@ -13,6 +14,7 @@ import { ButtonComponent } from '../../shard/button/button.component';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+
   public loginForm = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.required, Validators.email],
@@ -37,4 +39,6 @@ export class LoginComponent {
 
     this.store.dispatch(new AuthActions.LoginUser({ email, password }));
   }
+
+
 }

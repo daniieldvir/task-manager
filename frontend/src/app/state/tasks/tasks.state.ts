@@ -51,7 +51,7 @@ export class TasksState {
         ctx.patchState({
           tasks: [...currentTasks, newTask],
           loading: false,
-          error: null
+          error: null,
         });
       }),
       catchError((error) => {

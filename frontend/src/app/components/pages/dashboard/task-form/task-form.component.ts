@@ -30,7 +30,6 @@ export class TaskFormComponent {
   });
 
   constructor() {
-
     effect(() => {
       const task = this.task();
       if (task) {
@@ -39,7 +38,6 @@ export class TaskFormComponent {
           description: task.description || '',
         });
       } else {
-
         this.form.reset();
       }
 
@@ -70,6 +68,4 @@ export class TaskFormComponent {
     this.error.set('');
     this.closed.emit();
   }
-
 }
-

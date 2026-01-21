@@ -2,13 +2,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideIcons } from '@ng-icons/core';
-import {
-  heroMoon,
-  heroPencil,
-  heroPlus,
-  heroSun,
-  heroTrash
-} from '@ng-icons/heroicons/outline';
+import { heroMoon, heroPencil, heroPlus, heroSun, heroTrash } from '@ng-icons/heroicons/outline';
 import { provideStore } from '@ngxs/store';
 
 import { routes } from './app.routes';

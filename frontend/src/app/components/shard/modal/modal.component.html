@@ -1,18 +1,22 @@
 @if (isOpen()) {
-<div class="modal-backdrop" (click)="onBackdropClick($event)">
-  <div class="modal" [style.max-width]="maxWidth()" [ngStyle]="modalHeight ? { height: modalHeight } : {}">
-    <header class="modal-header">
-      <h2 class="modal-title">{{ title() }}</h2>
-      <button class="icon-button" type="button" (click)="close()">✕</button>
-    </header>
+  <div class="modal-backdrop" (click)="onBackdropClick($event)">
+    <div
+      class="modal"
+      [style.max-width]="maxWidth()"
+      [ngStyle]="modalHeight ? { height: modalHeight } : {}"
+    >
+      <header class="modal-header">
+        <h2 class="modal-title">{{ title() }}</h2>
+        <button class="icon-button" type="button" (click)="close()">✕</button>
+      </header>
 
-    <section class="modal-body">
-      <ng-content></ng-content>
-    </section>
+      <section class="modal-body">
+        <ng-content></ng-content>
+      </section>
 
-    <footer class="modal-footer">
-      <ng-content select="[footer]"></ng-content>
-    </footer>
+      <footer class="modal-footer">
+        <ng-content select="[footer]"></ng-content>
+      </footer>
+    </div>
   </div>
-</div>
 }

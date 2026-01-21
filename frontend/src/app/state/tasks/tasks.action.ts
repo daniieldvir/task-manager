@@ -7,16 +7,16 @@ export namespace TasksActions {
 
   export class CreateTask {
     static readonly type = '[Tasks] Create Task';
-    constructor(public readonly task: { title: string; description: string }) { }
+    constructor(public readonly task: { title: string; description: string }) {}
   }
 
   export class UpdateTask {
     static readonly type = '[Tasks] Update Task';
-    constructor(public readonly task: Task) { }
+    constructor(public readonly task: Task) {}
   }
 
   export class DeleteTask {
     static readonly type = '[Tasks] Delete Task';
-    constructor(public readonly task: Task) { }
+    constructor(public readonly task: Task) {}
   }
 }
