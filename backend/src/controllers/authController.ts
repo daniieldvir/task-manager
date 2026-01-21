@@ -71,12 +71,26 @@ export const login = async (req: Request, res: Response) => {
             { expiresIn: "1h" }
         );
 
-        res.json({ 
-            user: { id: authData.user.id, email: authData.user.email }, 
-            token 
+        res.json({
+            user: { id: authData.user.id, email: authData.user.email },
+            token
         });
     } catch (error: any) {
         console.error('Login error:', error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+export const logout = async (req: Request, res: Response) => {
+    try {
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+            console.error('Logout error:', error);
+            return res.status(500).json({ message: "Failed to logout from Supabase" });
+        }
+        res.json({ message: "Logged out successfully" });
+    } catch (error: any) {
+        console.error('Unexpected logout error:', error);
         res.status(500).json({ message: "Internal server error" });
     }
 };

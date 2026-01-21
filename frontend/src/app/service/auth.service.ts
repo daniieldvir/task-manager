@@ -20,4 +20,8 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.baseUrl}/login`, { email, password });
   }
 
+  logout(): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/logout`, {});
+  }
+
 }

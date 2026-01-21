@@ -1,0 +1,70 @@
+:host {
+  display: block;
+  width: 100%;
+
+
+  .oauth-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+
+    &.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .oauth-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-primary);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+
+      svg {
+        flex-shrink: 0;
+      }
+
+      span {
+        white-space: nowrap;
+      }
+
+      &:hover:not(:disabled) {
+        border-color: var(--border-secondary);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      &.google {
+        &:hover:not(:disabled) {
+          background: #fff;
+          border-color: #4285f4;
+
+          :host-context([data-theme='dark']) & {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #4285f4;
+          }
+        }
+      }
+    }
+  }
+}

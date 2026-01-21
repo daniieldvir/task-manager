@@ -8,7 +8,7 @@ import { AuthActions } from './auth.action';
 import { TasksActions } from '../tasks/tasks.action';
 
 export interface AuthStateModel {
-  loggedInUser: { id: number; email: string } | null;
+  loggedInUser: { id: string | number; email: string } | null;
   loading: boolean;
 }
 
@@ -79,4 +79,41 @@ export class AuthState {
         })
       );
   }
+
+  @Action(AuthActions.OAuthLoginSuccess)
+  oauthLoginSuccess(ctx: StateContext<AuthStateModel>, action: AuthActions.OAuthLoginSuccess) {
+    ctx.patchState({
+      loggedInUser: action.data.user,
+      loading: false,
+    });
+
+    ctx.dispatch(new TasksActions.GetTasks());
+  }
+
+  @Action(AuthActions.Logout)
+  logout(ctx: StateContext<AuthStateModel>) {
+    return this.authService.logout().pipe(
+      tap(() => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+
+        ctx.patchState({
+          loggedInUser: null,
+          loading: false,
+        });
+
+        this.router.navigate(['/login']);
+      }),
+      catchError((error) => {
+        console.error('Error during logout:', error);
+        // Still clear local data and navigate to login even if backend fails
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        ctx.patchState({ loggedInUser: null, loading: false });
+        this.router.navigate(['/login']);
+        return of(null);
+      })
+    );
+  }
 }
+

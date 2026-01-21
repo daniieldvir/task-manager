@@ -4,12 +4,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Store } from '@ngxs/store';
 import { AuthActions } from '../../../state/auth/auth.action';
 import { ButtonComponent } from '../../shard/button/button.component';
-
+import { OauthButtonsComponent } from './oauth-buttons/oauth-buttons.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, OauthButtonsComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -23,6 +23,9 @@ export class LoginComponent {
       validators: [Validators.required],
     }),
   });
+
+  public isOAuthLoading = false;
+  public oauthError: string | null = null;
 
   private readonly store = inject(Store);
 
@@ -39,5 +42,4 @@ export class LoginComponent {
 
     this.store.dispatch(new AuthActions.LoginUser({ email, password }));
   }
-
 }

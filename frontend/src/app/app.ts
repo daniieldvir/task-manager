@@ -9,5 +9,5 @@ import { ThemeService } from './service/theme.service';
   styleUrl: './app.scss',
 })
 export class App {
-
+  private readonly themeService = inject(ThemeService);
 }

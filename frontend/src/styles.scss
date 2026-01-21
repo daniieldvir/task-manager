@@ -68,11 +68,9 @@ $desktop: 1280px;
   --dashboard-user-accent: #2563eb;
 
   // Task item colors
-  --task-item-bg: radial-gradient(
-    circle at top left,
-    rgba(37, 99, 235, 0.08),
-    rgba(255, 255, 255, 0.98)
-  );
+  --task-item-bg: radial-gradient(circle at top left,
+      rgba(37, 99, 235, 0.08),
+      rgba(255, 255, 255, 0.98));
   --task-item-border: rgba(148, 163, 184, 0.2);
   --task-item-shadow: rgba(0, 0, 0, 0.1);
   --task-title-text: #1f2937;
@@ -156,11 +154,9 @@ $desktop: 1280px;
   --dashboard-user-accent: #60a5fa;
 
   // Task item colors
-  --task-item-bg: radial-gradient(
-    circle at top left,
-    rgba(37, 99, 235, 0.16),
-    rgba(15, 23, 42, 0.98)
-  );
+  --task-item-bg: radial-gradient(circle at top left,
+      rgba(37, 99, 235, 0.16),
+      rgba(15, 23, 42, 0.98));
   --task-item-border: rgba(148, 163, 184, 0.25);
   --task-item-shadow: rgba(15, 23, 42, 0.8);
   --task-title-text: #e5e7eb;
@@ -168,13 +164,13 @@ $desktop: 1280px;
   --task-date-text: #9ca3af;
 
   // Login page
-  --login-bg: linear-gradient(135deg, #1e3c72, #2a5298);
-  --login-form-bg: #ffffff;
-  --login-form-shadow: rgba(0, 0, 0, 0.25);
-  --login-input-border: #d0d7e2;
-  --login-input-focus: #2563eb;
-  --login-input-focus-shadow: rgba(37, 99, 235, 0.18);
-  --login-input-focus-bg: #f9fbff;
+  --login-bg: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+  --login-form-bg: rgba(30, 41, 59, 0.7);
+  --login-form-shadow: rgba(0, 0, 0, 0.5);
+  --login-input-border: rgba(148, 163, 184, 0.2);
+  --login-input-focus: #6366f1;
+  --login-input-focus-shadow: rgba(99, 102, 241, 0.2);
+  --login-input-focus-bg: rgba(15, 23, 42, 0.3);
 
   // Accent colors
   --accent-blue: #3b82f6;

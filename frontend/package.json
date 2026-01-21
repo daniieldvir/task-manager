@@ -9,9 +9,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "npm run build:gh-pages && ngh --dir=dist/new/browser",
-
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,html,scss,css,json,md}\" --log-level warn",
-     "format": "npx prettier --write \"src/**/*.{ts,js,html,scss,css,json}\""
+    "format": "npx prettier --write \"src/**/*.{ts,js,html,scss,css,json}\""
   },
   "prettier": {
     "printWidth": 100,
@@ -54,6 +53,7 @@
     "@ng-icons/core": "^33.0.0",
     "@ng-icons/heroicons": "^33.0.0",
     "@ngxs/store": "^21.0.0",
+    "@supabase/supabase-js": "^2.91.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

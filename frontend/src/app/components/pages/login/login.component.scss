@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: var(--bg-primary);
+  background: var(--login-bg, var(--bg-primary));
   padding: 1rem;
   position: relative;
   overflow-x: hidden;
@@ -19,7 +19,7 @@
       radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
       radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
 
-    [data-theme='light'] & {
+    :host-context([data-theme='light']) & {
       opacity: 0.3;
       background:
         radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
@@ -36,7 +36,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -77,17 +77,17 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    background: var(--card-bg);
+    background: var(--login-form-bg);
     padding: 2.5rem 3rem;
     border-radius: 1rem;
     border: 1px solid var(--card-border);
-    box-shadow: 0 4px 20px var(--card-shadow);
+    box-shadow: 0 4px 20px var(--login-form-shadow);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
 
     &:hover {
       border-color: var(--border-secondary);
-      box-shadow: 0 6px 24px var(--card-shadow);
+      box-shadow: 0 6px 24px var(--login-form-shadow);
     }
 
     @media (max-width: 768px) {
@@ -106,8 +106,8 @@
         width: 100%;
         padding: 0.75rem 1rem;
         border-radius: 0.5rem;
-        border: 1px solid var(--border-primary);
-        background: var(--bg-primary);
+        border: 1px solid var(--login-input-border);
+        background: var(--login-input-focus-bg);
         color: var(--text-primary);
         font-size: 0.95rem;
         font-family: inherit;
@@ -123,8 +123,8 @@
 
         &:focus {
           outline: none;
-          border-color: var(--accent-indigo);
-          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+          border-color: var(--login-input-focus);
+          box-shadow: 0 0 0 3px var(--login-input-focus-shadow);
         }
 
         @media (max-width: 768px) {
@@ -142,6 +142,32 @@
 
       app-button {
         align-self: stretch;
+      }
+    }
+
+    // Divider styles
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0;
+
+      &::before,
+      &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right,
+            transparent,
+            var(--border-primary),
+            transparent);
+      }
+
+      span {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        white-space: nowrap;
+        font-weight: 500;
       }
     }
   }

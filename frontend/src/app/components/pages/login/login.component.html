@@ -11,8 +11,19 @@
 
       <div class="button-container">
         <app-button type="submit" label="Login" variant="primary" />
-
       </div>
     </form>
+
+    <div class="divider">
+      <span>או התחבר באמצעות</span>
+    </div>
+
+    @if (oauthError) {
+    <div class="oauth-error">{{ oauthError }}</div>
+    }
+
+    <div class="oauth-buttons">
+      <app-oauth-buttons (loadingChange)="isOAuthLoading = $event" (errorChange)="oauthError = $event">
+      </app-oauth-buttons>
+    </div>
   </div>
-</div>

@@ -121,4 +121,8 @@ export class DashboardComponent {
     this.isDeleteOpen.set(false);
     this.taskToDelete.set(null);
   }
+
+  public logout() {
+    this.store.dispatch(new AuthActions.Logout());
+  }
 }
