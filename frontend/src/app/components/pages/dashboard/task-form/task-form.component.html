@@ -1,0 +1,22 @@
+<app-modal class="task-form-modal" [isOpen]="isOpen()" [title]="title()" (closed)="close()">
+  <form [formGroup]="form" class="task-form">
+    <div class="form-field">
+      <label for="title">Title</label>
+      <input id="title" type="text" formControlName="title" />
+    </div>
+
+    <div class="form-field">
+      <label for="description">Description</label>
+      <textarea id="description" rows="3" formControlName="description"></textarea>
+    </div>
+  </form>
+
+  @if (error()) {
+  <div class="error">{{ error() }}</div>
+  }
+
+  <div footer class="form-actions">
+    <app-button variant="secondary" label="Cancel" (clicked)="close()" />
+    <app-button variant="primary" label="Save" (clicked)="confirm()" />
+  </div>
+</app-modal>

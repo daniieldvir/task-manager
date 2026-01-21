@@ -1,0 +1,19 @@
+<div class="tasks">
+  <app-button class="add-task-btn" variant="primary" iconName="heroPlus" label="Add Task" (clicked)="addTask()" />
+
+  <div class="tasks-list">
+    @for (task of tasks(); track task.id) {
+    <app-task-item [task]="task" [needsActions]="true" (edit)="editTask($event)" (delete)="deleteTask($event)" />
+    }
+  </div>
+
+  @if (isOpen()) {
+  <app-task-form [isOpen]="isOpen()" [title]="formTitle()" [task]="currentTask()" (closed)="close()"
+    (confirmed)="handleFormConfirmed($event)" />
+  }
+
+  @if (isDeleteOpen()) {
+  <app-delete-confirmation [isOpen]="isDeleteOpen()" [task]="taskToDelete()" (closed)="closeDeletePopup()"
+    (confirmed)="confirmDelete()" />
+  }
+</div>

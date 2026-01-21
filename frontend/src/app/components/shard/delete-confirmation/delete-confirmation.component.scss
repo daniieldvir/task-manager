@@ -1,0 +1,29 @@
+.delete-confirmation-modal {
+  --modal-height: 200px;
+
+  .confirmation-message {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+
+    @media (max-width: 768px) {
+      --button-width: 70px width: 100%;
+    }
+  }
+}

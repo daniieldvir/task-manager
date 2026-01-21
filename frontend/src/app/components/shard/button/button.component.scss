@@ -1,0 +1,115 @@
+.app-button {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease, transform 0.08s ease, color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  white-space: nowrap;
+  width: var(--button-width, auto);
+
+  @media (max-width: 768px) {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Primary variant (default) - indigo style
+  &.primary {
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+
+    &:hover:not(:disabled) {
+      background: var(--btn-primary-hover);
+    }
+  }
+
+  // Legacy blue button style (for backward compatibility when no variant is specified)
+  &:not(.primary):not(.secondary):not(.danger):not(.icon) {
+    background-color: var(--accent-blue);
+    color: var(--text-inverse);
+
+    &:hover:not(:disabled) {
+      background-color: var(--btn-primary-hover);
+    }
+  }
+
+  // Secondary variant
+  &.secondary {
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border: 1px solid var(--btn-secondary-border);
+
+    &:hover:not(:disabled) {
+      background: var(--btn-secondary-hover);
+    }
+  }
+
+  // Danger variant
+  &.danger {
+    background: var(--btn-danger-bg);
+    color: var(--btn-danger-text);
+
+    &:hover:not(:disabled) {
+      background: var(--btn-danger-hover);
+    }
+  }
+
+  // Icon-only variant (for task-item actions)
+  &.icon {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border-radius: 0.5rem;
+    background: var(--btn-icon-bg);
+    color: var(--btn-icon-text);
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      transform 0.1s ease;
+
+    &:hover:not(:disabled) {
+      background: var(--btn-icon-hover);
+      transform: scale(1.05);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+
+    ng-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // Icon variant with edit styling
+  &.icon.edit {
+    &:hover:not(:disabled) {
+      background: rgba(79, 70, 229, 0.2);
+      color: var(--accent-indigo);
+    }
+  }
+
+  // Icon variant with delete styling
+  &.icon.delete {
+    &:hover:not(:disabled) {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--btn-danger-hover);
+    }
+  }
+}
