@@ -54,7 +54,6 @@ export class DashboardComponent {
 
   constructor() {
     this.store.dispatch(new AuthActions.BootstrapAuth());
-    this.store.dispatch(new TasksActions.GetTasks(0, this.pageSize));
   }
 
   public onTaskDeleted(task: Task) {

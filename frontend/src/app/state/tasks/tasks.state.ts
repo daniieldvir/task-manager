@@ -43,7 +43,7 @@ export class TasksState {
       }),
       catchError((error) => {
         ctx.patchState({ loading: false, error: error.message });
-        return of({ tasks: [], count: 0 });
+        return of(null);
       })
     );
   }
@@ -55,7 +55,7 @@ export class TasksState {
     return this.taskService.createTask(action.task.title, action.task.description).pipe(
       tap(() => {
         ctx.patchState({ error: null });
-        return ctx.dispatch(new TasksActions.GetTasks(0, 3));
+        ctx.dispatch(new TasksActions.GetTasks(0, 3));
       }),
       catchError((error) => {
         ctx.patchState({ loading: false, error: error.message });
@@ -69,9 +69,17 @@ export class TasksState {
     ctx.patchState({ loading: true });
 
     return this.taskService.updateTask(action.task).pipe(
-      tap(() => {
-        ctx.patchState({ error: null });
-        return ctx.dispatch(new TasksActions.GetTasks(0, 3));
+      tap((updatedTask) => {
+        const state = ctx.getState();
+        const updatedTasks = state.tasks.map((task) =>
+          task.id === updatedTask.id ? updatedTask : task
+        );
+
+        ctx.patchState({
+          tasks: updatedTasks,
+          loading: false,
+          error: null,
+        });
       }),
       catchError((error) => {
         ctx.patchState({ loading: false, error: error.message });
@@ -86,8 +94,15 @@ export class TasksState {
 
     return this.taskService.deleteTask(action.task.id).pipe(
       tap(() => {
-        ctx.patchState({ error: null });
-        return ctx.dispatch(new TasksActions.GetTasks(0, 3));
+        const state = ctx.getState();
+        const updatedTasks = state.tasks.filter((task) => task.id !== action.task.id);
+
+        ctx.patchState({
+          tasks: updatedTasks,
+          totalCount: Math.max(0, state.totalCount - 1),
+          loading: false,
+          error: null,
+        });
       }),
       catchError((error) => {
         ctx.patchState({ loading: false, error: error.message });
