@@ -1,9 +1,10 @@
-import { Component, effect, inject, input, output, signal } from '@angular/core';
+import { Component, effect, ElementRef, inject, input, output, signal, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Task, TaskFormData } from '../../../../models/task.models';
 import { ModalComponent } from '../../../shard/modal/modal.component';
 import { ButtonComponent } from '../../../shard/button/button.component';
+
 
 @Component({
   selector: 'app-task-form',
@@ -13,6 +14,8 @@ import { ButtonComponent } from '../../../shard/button/button.component';
   styleUrl: './task-form.component.scss',
 })
 export class TaskFormComponent {
+  public titleInput = viewChild<ElementRef<HTMLInputElement>>('titleInput');
+
   public isOpen = input<boolean>(false);
   public title = input<string>('');
   public task = input<Task | null>(null);
@@ -31,6 +34,13 @@ export class TaskFormComponent {
 
   constructor() {
     effect(() => {
+      const input = this.titleInput();
+      if (this.isOpen() && input) {
+        setTimeout(() => input.nativeElement.focus(), 0);
+      }
+    });
+
+    effect(() => {
       const task = this.task();
       if (task) {
         this.form.patchValue({
@@ -44,6 +54,7 @@ export class TaskFormComponent {
       this.error.set('');
     });
   }
+
 
   confirm() {
     if (this.form.invalid) {

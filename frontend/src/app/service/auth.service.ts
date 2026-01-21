@@ -3,13 +3,16 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../models/auth-response.models';
 
-
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000'
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000/auth';
+  private baseUrl = environment.apiUrl + '/auth';
 
   private readonly http = inject(HttpClient);
 

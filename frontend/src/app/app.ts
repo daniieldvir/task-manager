@@ -8,11 +8,6 @@ import { ThemeService } from './service/theme.service';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App implements OnInit {
-  private readonly themeService = inject(ThemeService);
+export class App {
 
-  ngOnInit(): void {
-    console.log('App initialized');
-    // Theme service initializes automatically via constructor
-  }
 }

@@ -6,12 +6,14 @@ import { Task, TaskFormData } from '../../../models/task.models';
 import { AuthActions } from '../../../state/auth/auth.action';
 import { AuthSelectors } from '../../../state/auth/auth.selectors';
 import { TasksActions } from '../../../state/tasks/tasks.action';
+
+import { TaskFormComponent } from './task-form/task-form.component';
 import { ThemeToggleComponent } from '../../shard/theme-toggle/theme-toggle.component';
 import { ButtonComponent } from '../../shard/button/button.component';
 import { TaskItemComponent } from '../../shard/task-item/task-item.component';
-import { TaskFormComponent } from './task-form/task-form.component';
 import { DeleteConfirmationComponent } from '../../shard/delete-confirmation/delete-confirmation.component';
 import { PlaceholderCardComponent } from '../../shard/placeholder-card/placeholder-card.component';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -71,13 +73,20 @@ export class DashboardComponent {
 
   public handleFormConfirmed(taskData: TaskFormData) {
     if (taskData.id) {
-      // Update existing task
+      // Update existing task - safely get current task first
+      const current = this.currentTask();
+
+      if (!current) {
+        console.error('Cannot update task: currentTask is null');
+        return;
+      }
+
       const task: Task = {
         id: taskData.id,
         title: taskData.title,
         description: taskData.description,
-        user_id: this.currentTask()!.user_id,
-        created_at: this.currentTask()!.created_at,
+        user_id: current.user_id,
+        created_at: current.created_at,
       };
       this.onTaskUpdated(task);
     } else {

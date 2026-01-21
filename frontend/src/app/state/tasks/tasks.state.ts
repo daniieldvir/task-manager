@@ -1,8 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Action, State, StateContext } from '@ngxs/store';
-import { catchError, filter, of, tap } from 'rxjs';
-import { AuthService } from '../../service/auth.service';
+import { catchError, of, tap } from 'rxjs';
 import { TasksActions } from './tasks.action';
 import { Task } from '../../models/task.models';
 import { TaskService } from '../../service/task.service';
@@ -31,7 +29,6 @@ export class TasksState {
 
     return this.taskService.getTasks().pipe(
       tap((tasks) => {
-        console.log('Tasks loaded:', tasks);
         ctx.patchState({ tasks: tasks, loading: false, error: null });
       }),
       catchError((error) => {

@@ -44,7 +44,6 @@ export class AuthState {
 
       ctx.dispatch(new TasksActions.GetTasks());
     } catch (error) {
-      console.error('Error parsing user data:', error);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       this.router.navigate(['/login']);
@@ -76,7 +75,6 @@ export class AuthState {
         }),
         catchError((error) => {
           ctx.patchState({ loading: false });
-          console.error('Login error:', error);
           return of(null);
         })
       );
