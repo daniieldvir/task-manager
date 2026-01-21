@@ -1,4 +1,4 @@
-import { Component, inject, Output, EventEmitter } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { SupabaseService, OAuthProvider } from '../../../../service/supabase.service';
 import { CommonModule } from '@angular/common';
 
@@ -7,15 +7,14 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './oauth-buttons.component.html',
-  styleUrl: './oauth-buttons.component.scss'
+  styleUrl: './oauth-buttons.component.scss',
 })
 export class OauthButtonsComponent {
-
   public isOAuthLoading = false;
   public oauthError: string | null = null;
 
-  @Output() loadingChange = new EventEmitter<boolean>();
-  @Output() errorChange = new EventEmitter<string | null>();
+  public loadingChange = output<boolean>();
+  public errorChange = output<string | null>();
 
   private readonly supabaseService = inject(SupabaseService);
 

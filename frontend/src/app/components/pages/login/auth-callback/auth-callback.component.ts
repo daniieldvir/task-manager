@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './auth-callback.component.html',
-  styleUrl: './auth-callback.component.scss'
+  styleUrl: './auth-callback.component.scss',
 })
 export class AuthCallbackComponent implements OnInit {
   message = 'Verifying connection...';
@@ -26,18 +26,23 @@ export class AuthCallbackComponent implements OnInit {
       if (session) {
         // Store the session data
         localStorage.setItem('token', session.access_token);
-        localStorage.setItem('user', JSON.stringify({
-          id: session.user.id,
-          email: session.user.email
-        }));
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            id: session.user.id,
+            email: session.user.email,
+          })
+        );
 
         this.message = 'Login successful! Moving to dashboard...';
 
         // Dispatch OAuth login success action
-        this.store.dispatch(new AuthActions.OAuthLoginSuccess({
-          user: { id: session.user.id, email: session.user.email! },
-          token: session.access_token
-        }));
+        this.store.dispatch(
+          new AuthActions.OAuthLoginSuccess({
+            user: { id: session.user.id, email: session.user.email! },
+            token: session.access_token,
+          })
+        );
 
         // Navigate to dashboard
         setTimeout(() => {

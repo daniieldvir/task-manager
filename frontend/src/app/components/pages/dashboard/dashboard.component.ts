@@ -15,7 +15,6 @@ import { PlaceholderCardComponent } from '../../shared/placeholder-card/placehol
 import { PaginationComponent } from '../../shared/pagination/pagination.component';
 import { SkeletonLoaderComponent } from '../../shared/skeleton-loader/skeleton-loader.component';
 
-
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -28,7 +27,7 @@ import { SkeletonLoaderComponent } from '../../shared/skeleton-loader/skeleton-l
     DeleteConfirmationComponent,
     PlaceholderCardComponent,
     PaginationComponent,
-    SkeletonLoaderComponent
+    SkeletonLoaderComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

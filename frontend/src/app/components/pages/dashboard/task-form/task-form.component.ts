@@ -1,10 +1,18 @@
-import { Component, effect, ElementRef, inject, input, output, signal, viewChild } from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Task, TaskFormData } from '../../../../models/task.models';
 import { ModalComponent } from '../../../shared/modal/modal.component';
 import { ButtonComponent } from '../../../shared/button/button.component';
-
 
 @Component({
   selector: 'app-task-form',
@@ -54,7 +62,6 @@ export class TaskFormComponent {
       this.error.set('');
     });
   }
-
 
   confirm() {
     if (this.form.invalid) {

@@ -50,34 +50,31 @@ export class AuthState {
     }
   }
 
-
   @Action(AuthActions.LoginUser)
   loginUser(ctx: StateContext<AuthStateModel>, action: AuthActions.LoginUser) {
     ctx.patchState({ loading: true });
 
-    return this.authService
-      .login(action.loginData.email, action.loginData.password)
-      .pipe(
-        tap((response: AuthResponse) => {
-          if (response.user && response.token) {
-            localStorage.setItem('token', response.token);
-            localStorage.setItem('user', JSON.stringify(response.user));
+    return this.authService.login(action.loginData.email, action.loginData.password).pipe(
+      tap((response: AuthResponse) => {
+        if (response.user && response.token) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('user', JSON.stringify(response.user));
 
-            ctx.patchState({
-              loggedInUser: response.user,
-              loading: false,
-            });
+          ctx.patchState({
+            loggedInUser: response.user,
+            loading: false,
+          });
 
-            ctx.dispatch(new TasksActions.GetTasks());
+          ctx.dispatch(new TasksActions.GetTasks());
 
-            this.router.navigate(['/dashboard']);
-          }
-        }),
-        catchError((error) => {
-          ctx.patchState({ loading: false });
-          return of(null);
-        })
-      );
+          this.router.navigate(['/dashboard']);
+        }
+      }),
+      catchError((error) => {
+        ctx.patchState({ loading: false });
+        return of(null);
+      })
+    );
   }
 
   @Action(AuthActions.OAuthLoginSuccess)
@@ -116,4 +113,3 @@ export class AuthState {
     );
   }
 }
-

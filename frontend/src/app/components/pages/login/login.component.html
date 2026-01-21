@@ -19,10 +19,11 @@
     </div>
 
     @if (oauthError) {
-    <div class="oauth-error">{{ oauthError }}</div>
+      <div class="oauth-error">{{ oauthError }}</div>
     }
 
     <div class="oauth-buttons" [class.loading]="isOAuthLoading">
       <app-oauth-buttons></app-oauth-buttons>
     </div>
   </div>
+</div>

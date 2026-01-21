@@ -29,7 +29,7 @@ function isTokenExpired(token: string): boolean {
     // Add a small buffer (30 seconds) to handle clock skew
     const bufferMs = 30 * 1000;
 
-    return currentTime >= (expirationTime - bufferMs);
+    return currentTime >= expirationTime - bufferMs;
   } catch (error) {
     console.error('Error parsing token:', error);
     return true; // Treat as expired if parsing fails

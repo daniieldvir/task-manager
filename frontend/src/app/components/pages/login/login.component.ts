@@ -14,7 +14,6 @@ import { OauthButtonsComponent } from './oauth-buttons/oauth-buttons.component';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-
   public loginForm = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.required, Validators.email],

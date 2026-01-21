@@ -2,19 +2,29 @@
   <div class="task-content">
     <h3 class="task-title">{{ task().title }}</h3>
     @if (task().description) {
-    <p class="task-description">{{ task().description }}</p>
+      <p class="task-description">{{ task().description }}</p>
     }
     @if (task().created_at) {
-    <span class="task-date">{{ formatDate(task().created_at!) }}</span>
+      <span class="task-date">{{ formatDate(task().created_at!) }}</span>
     }
   </div>
 
   @if (needsActions()) {
-  <div class="task-actions">
-    <app-button variant="icon" iconName="heroPencil" [additionalClass]="'edit'" (clicked)="onEdit()"
-      title="Edit task" />
-    <app-button variant="icon" iconName="heroTrash" [additionalClass]="'delete'" (clicked)="onDelete()"
-      title="Delete task" />
-  </div>
+    <div class="task-actions">
+      <app-button
+        variant="icon"
+        iconName="heroPencil"
+        [additionalClass]="'edit'"
+        (clicked)="onEdit()"
+        title="Edit task"
+      />
+      <app-button
+        variant="icon"
+        iconName="heroTrash"
+        [additionalClass]="'delete'"
+        (clicked)="onDelete()"
+        title="Delete task"
+      />
+    </div>
   }
 </div>

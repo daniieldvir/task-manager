@@ -1,20 +1,31 @@
 <div class="pagination">
-    <app-button variant="secondary" size="small" [disabled]="currentPage() === 0"
-        (clicked)="onPageClick(currentPage() - 1)">
-        Previous
-    </app-button>
+  <app-button
+    variant="secondary"
+    size="small"
+    [disabled]="currentPage() === 0"
+    (clicked)="onPageClick(currentPage() - 1)"
+  >
+    Previous
+  </app-button>
 
-    <div class="pages">
-        @for (page of pages(); track page) {
-        <app-button [variant]="page === currentPage() ? 'primary' : 'secondary'" size="small"
-            (clicked)="onPageClick(page)">
-            {{ page + 1 }}
-        </app-button>
-        }
-    </div>
+  <div class="pages">
+    @for (page of pages(); track page) {
+      <app-button
+        [variant]="page === currentPage() ? 'primary' : 'secondary'"
+        size="small"
+        (clicked)="onPageClick(page)"
+      >
+        {{ page + 1 }}
+      </app-button>
+    }
+  </div>
 
-    <app-button variant="secondary" size="small" [disabled]="currentPage() >= totalPages() - 1"
-        (clicked)="onPageClick(currentPage() + 1)">
-        Next
-    </app-button>
+  <app-button
+    variant="secondary"
+    size="small"
+    [disabled]="currentPage() >= totalPages() - 1"
+    (clicked)="onPageClick(currentPage() + 1)"
+  >
+    Next
+  </app-button>
 </div>

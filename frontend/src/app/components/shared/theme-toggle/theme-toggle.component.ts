@@ -14,8 +14,6 @@ import { ThemeService } from '../../../service/theme.service';
 })
 export class ThemeToggleComponent {
   private readonly themeService = inject(ThemeService);
-
-  // Directly use the signal from the service
   public readonly currentTheme = this.themeService.currentTheme;
 
   toggleTheme(): void {

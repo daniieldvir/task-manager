@@ -68,9 +68,11 @@ $desktop: 1280px;
   --dashboard-user-accent: #2563eb;
 
   // Task item colors
-  --task-item-bg: radial-gradient(circle at top left,
-      rgba(37, 99, 235, 0.08),
-      rgba(255, 255, 255, 0.98));
+  --task-item-bg: radial-gradient(
+    circle at top left,
+    rgba(37, 99, 235, 0.08),
+    rgba(255, 255, 255, 0.98)
+  );
   --task-item-border: rgba(148, 163, 184, 0.2);
   --task-item-shadow: rgba(0, 0, 0, 0.1);
   --task-title-text: #1f2937;
@@ -154,9 +156,11 @@ $desktop: 1280px;
   --dashboard-user-accent: #60a5fa;
 
   // Task item colors
-  --task-item-bg: radial-gradient(circle at top left,
-      rgba(37, 99, 235, 0.16),
-      rgba(15, 23, 42, 0.98));
+  --task-item-bg: radial-gradient(
+    circle at top left,
+    rgba(37, 99, 235, 0.16),
+    rgba(15, 23, 42, 0.98)
+  );
   --task-item-border: rgba(148, 163, 184, 0.25);
   --task-item-shadow: rgba(15, 23, 42, 0.8);
   --task-title-text: #e5e7eb;

@@ -11,12 +11,12 @@ export class TaskService {
   private baseUrl = environment.apiUrl + '/tasks';
   private readonly http = inject(HttpClient);
 
-  getTasks(page: number = 0, pageSize: number = 20): Observable<{ tasks: Task[], count: number }> {
-    return this.http.get<{ tasks: Task[], count: number }>(`${this.baseUrl}`, {
+  getTasks(page: number = 0, pageSize: number = 20): Observable<{ tasks: Task[]; count: number }> {
+    return this.http.get<{ tasks: Task[]; count: number }>(`${this.baseUrl}`, {
       params: {
         page: page.toString(),
-        pageSize: pageSize.toString()
-      }
+        pageSize: pageSize.toString(),
+      },
     });
   }
 

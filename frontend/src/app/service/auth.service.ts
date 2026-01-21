@@ -5,7 +5,7 @@ import { AuthResponse } from '../models/auth-response.models';
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000'
+  apiUrl: 'http://localhost:3000',
 };
 
 @Injectable({
@@ -23,5 +23,4 @@ export class AuthService {
   logout(): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/logout`, {});
   }
-
 }
