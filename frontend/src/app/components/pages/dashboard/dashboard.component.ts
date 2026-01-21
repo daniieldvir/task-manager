@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { TasksSelectors } from '../../../state/tasks/tasks.selectors';
 import { select, Store } from '@ngxs/store';
 import { Task, TaskFormData } from '../../../models/task.models';
@@ -51,7 +51,6 @@ export class DashboardComponent {
   public currentPage = signal<number>(0);
   public readonly pageSize = 3;
 
-  protected readonly taskAmount = computed(() => this.tasks().length);
 
   constructor() {
     this.store.dispatch(new AuthActions.BootstrapAuth());
