@@ -54,14 +54,14 @@
   <app-pagination class="dashboard-pagination" [currentPage]="currentPage()" [totalCount]="totalCount()"
     [pageSize]="pageSize" (pageChange)="goToPage($event)" />
   }
-
-  @if (isOpen()) {
-  <app-task-form [isOpen]="isOpen()" [title]="formTitle()" [task]="currentTask()" (closed)="close()"
-    (confirmed)="handleFormConfirmed($event)" />
-  }
-
-  @if (isDeleteOpen()) {
-  <app-delete-confirmation [isOpen]="isDeleteOpen()" [task]="taskToDelete()" (closed)="closeDeletePopup()"
-    (confirmed)="confirmDelete()" />
-  }
 </div>
+
+@if (isOpen()) {
+<app-task-form [isOpen]="isOpen()" [title]="formTitle()" [task]="currentTask()" (closed)="close()"
+  (confirmed)="handleFormConfirmed($event)" />
+}
+
+@if (isDeleteOpen()) {
+<app-delete-confirmation [isOpen]="isDeleteOpen()" [task]="taskToDelete()" (closed)="closeDeletePopup()"
+  (confirmed)="confirmDelete()" />
+}
