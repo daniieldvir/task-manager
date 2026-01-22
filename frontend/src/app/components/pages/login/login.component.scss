@@ -84,6 +84,7 @@
     box-shadow: 0 4px 20px var(--login-form-shadow);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    width: 375px;
 
     &:hover {
       border-color: var(--border-secondary);
@@ -130,6 +131,30 @@
         @media (max-width: 768px) {
           padding: 0.625rem 0.875rem;
           font-size: 0.875rem;
+        }
+      }
+
+      .error-message {
+        margin-top: 10px;
+        margin-bottom: 0.25rem;
+        font-size: 0.75rem;
+        color: var(--btn-danger-hover);
+        background: rgba(185, 28, 28, 0.1);
+        border: 1px solid rgba(248, 113, 113, 0.4);
+        border-radius: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        width: 100%;
+        min-height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+
+        @media (max-width: 768px) {
+          font-size: 0.6875rem;
+          padding: 0.4375rem 0.625rem;
+          margin-top: 0.5rem;
+          min-height: 2.25rem;
         }
       }
     }

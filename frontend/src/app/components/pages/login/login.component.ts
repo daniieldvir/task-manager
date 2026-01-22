@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
+import { select, Store } from '@ngxs/store';
 import { AuthActions } from '../../../state/auth/auth.action';
 import { ButtonComponent } from '../../shared/button/button.component';
 import { OauthButtonsComponent } from './oauth-buttons/oauth-buttons.component';
+import { AuthSelectors } from '../../../state/auth/auth.selectors';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { OauthButtonsComponent } from './oauth-buttons/oauth-buttons.component';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+
   public loginForm = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.required, Validators.email],
@@ -24,8 +26,7 @@ export class LoginComponent {
   });
 
   public isOAuthLoading = false;
-  public oauthError: string | null = null;
-
+  protected readonly authError = select(AuthSelectors.slices.error);
   private readonly store = inject(Store);
 
   public login() {

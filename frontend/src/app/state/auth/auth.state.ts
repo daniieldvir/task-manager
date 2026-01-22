@@ -6,10 +6,12 @@ import { AuthResponse } from '../../models/auth-response.models';
 import { AuthService } from '../../service/auth.service';
 import { AuthActions } from './auth.action';
 import { TasksActions } from '../tasks/tasks.action';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface AuthStateModel {
   loggedInUser: { id: string | number; email: string } | null;
   loading: boolean;
+  error: string | null;
 }
 
 @Injectable()
@@ -18,6 +20,7 @@ export interface AuthStateModel {
   defaults: {
     loggedInUser: null,
     loading: false,
+    error: null,
   },
 })
 export class AuthState {
@@ -71,7 +74,12 @@ export class AuthState {
         }
       }),
       catchError((error) => {
-        ctx.patchState({ loading: false });
+        const backendMessage =
+          error instanceof HttpErrorResponse
+            ? error.error?.message
+            : null;
+
+        ctx.patchState({ loading: false, error: backendMessage });
         return of(null);
       })
     );
@@ -97,16 +105,15 @@ export class AuthState {
         ctx.patchState({
           loggedInUser: null,
           loading: false,
+          error: null,
         });
 
         this.router.navigate(['/login']);
       }),
-      catchError((error) => {
-        console.error('Error during logout:', error);
-        // Still clear local data and navigate to login even if backend fails
+      catchError(() => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        ctx.patchState({ loggedInUser: null, loading: false });
+        ctx.patchState({ loggedInUser: null, loading: false, error: null });
         this.router.navigate(['/login']);
         return of(null);
       })
