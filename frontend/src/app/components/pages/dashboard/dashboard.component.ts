@@ -51,7 +51,6 @@ export class DashboardComponent {
   public currentPage = signal<number>(0);
   public readonly pageSize = 3;
 
-
   constructor() {
     this.store.dispatch(new AuthActions.BootstrapAuth());
   }

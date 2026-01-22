@@ -74,10 +74,7 @@ export class AuthState {
         }
       }),
       catchError((error) => {
-        const backendMessage =
-          error instanceof HttpErrorResponse
-            ? error.error?.message
-            : null;
+        const backendMessage = error instanceof HttpErrorResponse ? error.error?.message : null;
 
         ctx.patchState({ loading: false, error: backendMessage });
         return of(null);

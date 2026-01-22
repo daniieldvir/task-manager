@@ -20,48 +20,72 @@
   </div>
 
   <section class="body">
-    <app-button class="add-task-btn" variant="primary" iconName="heroPlus" (clicked)="addTask()">Add Task</app-button>
+    <app-button class="add-task-btn" variant="primary" iconName="heroPlus" (clicked)="addTask()"
+      >Add Task</app-button
+    >
 
     @if (error()) {
-    <div class="error-container">
-      <p>{{ error() }}</p>
-    </div>
+      <div class="error-container">
+        <p>{{ error() }}</p>
+      </div>
     }
     @if (loading()) {
-    <div class="skeleton-list">
-      <app-skeleton-loader [count]="3" height="120px" borderRadius="1rem" />
-    </div>
-    } @else {
-    @if (totalCount() === 0) {
-    <div class="placeholder-card empty-tasks">
-      <app-placeholder-card title="No tasks yet" message="Get started by creating your first task!" />
-    </div>
-    } @else {
-    <div class="tasks-list">
-      <div class="tasks">
-        <div class="tasks-list">
-          @for (task of tasks(); track task.id) {
-          <app-task-item [task]="task" [needsActions]="true" (edit)="editTask($event)" (delete)="deleteTask($event)" />
-          }
-        </div>
+      <div class="skeleton-list">
+        <app-skeleton-loader [count]="3" height="120px" borderRadius="1rem" />
       </div>
-    </div>
-    }
+    } @else {
+      @if (totalCount() === 0) {
+        <div class="placeholder-card empty-tasks">
+          <app-placeholder-card
+            title="No tasks yet"
+            message="Get started by creating your first task!"
+          />
+        </div>
+      } @else {
+        <div class="tasks-list">
+          <div class="tasks">
+            <div class="tasks-list">
+              @for (task of tasks(); track task.id) {
+                <app-task-item
+                  [task]="task"
+                  [needsActions]="true"
+                  (edit)="editTask($event)"
+                  (delete)="deleteTask($event)"
+                />
+              }
+            </div>
+          </div>
+        </div>
+      }
     }
   </section>
 
   @if (totalCount() > pageSize) {
-  <app-pagination class="dashboard-pagination" [currentPage]="currentPage()" [totalCount]="totalCount()"
-    [pageSize]="pageSize" (pageChange)="goToPage($event)" />
+    <app-pagination
+      class="dashboard-pagination"
+      [currentPage]="currentPage()"
+      [totalCount]="totalCount()"
+      [pageSize]="pageSize"
+      (pageChange)="goToPage($event)"
+    />
   }
 </div>
 
 @if (isOpen()) {
-<app-task-form [isOpen]="isOpen()" [title]="formTitle()" [task]="currentTask()" (closed)="close()"
-  (confirmed)="handleFormConfirmed($event)" />
+  <app-task-form
+    [isOpen]="isOpen()"
+    [title]="formTitle()"
+    [task]="currentTask()"
+    (closed)="close()"
+    (confirmed)="handleFormConfirmed($event)"
+  />
 }
 
 @if (isDeleteOpen()) {
-<app-delete-confirmation [isOpen]="isDeleteOpen()" [task]="taskToDelete()" (closed)="closeDeletePopup()"
-  (confirmed)="confirmDelete()" />
+  <app-delete-confirmation
+    [isOpen]="isDeleteOpen()"
+    [task]="taskToDelete()"
+    (closed)="closeDeletePopup()"
+    (confirmed)="confirmDelete()"
+  />
 }

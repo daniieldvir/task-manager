@@ -7,12 +7,16 @@
   <div class="login-form">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <input type="email" formControlName="email" placeholder="Email" autocomplete="email" />
-      <input type="password" formControlName="password" placeholder="Password" autocomplete="current-password" />
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+        autocomplete="current-password"
+      />
 
       @if (authError()) {
-      <div class="error-message">{{ authError() }}</div>
+        <div class="error-message">{{ authError() }}</div>
       }
-
 
       <div class="button-container">
         <app-button type="submit" label="Login" variant="primary" />
@@ -23,9 +27,7 @@
       <span>Or login with</span>
     </div>
 
-
-
-    <div class="oauth-buttons" [class.loading]="isOAuthLoading">
+    <div class="oauth-buttons">
       <app-oauth-buttons></app-oauth-buttons>
     </div>
   </div>

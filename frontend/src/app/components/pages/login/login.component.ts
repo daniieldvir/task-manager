@@ -15,7 +15,6 @@ import { AuthSelectors } from '../../../state/auth/auth.selectors';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-
   public loginForm = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.required, Validators.email],
@@ -25,7 +24,6 @@ export class LoginComponent {
     }),
   });
 
-  public isOAuthLoading = false;
   protected readonly authError = select(AuthSelectors.slices.error);
   private readonly store = inject(Store);
 

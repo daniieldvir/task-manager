@@ -16,10 +16,6 @@ export class SupabaseService {
     );
   }
 
-  get client(): SupabaseClient {
-    return this.supabase;
-  }
-
   async signInWithOAuth(provider: OAuthProvider) {
     const providerMap: Record<OAuthProvider, Provider> = {
       google: 'google',
@@ -53,16 +49,5 @@ export class SupabaseService {
       throw error;
     }
     return data.session;
-  }
-
-  async signOut() {
-    const { error } = await this.supabase.auth.signOut();
-    if (error) {
-      throw error;
-    }
-  }
-
-  onAuthStateChange(callback: (event: string, session: any) => void) {
-    return this.supabase.auth.onAuthStateChange(callback);
   }
 }
