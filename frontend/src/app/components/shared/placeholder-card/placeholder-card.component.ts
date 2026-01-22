@@ -1,11 +1,10 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgIconComponent } from '@ng-icons/core';
 
 @Component({
   selector: 'app-placeholder-card',
   standalone: true,
-  imports: [CommonModule, NgIconComponent],
+  imports: [CommonModule],
   templateUrl: './placeholder-card.component.html',
   styleUrl: './placeholder-card.component.scss',
 })
