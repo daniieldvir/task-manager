@@ -21,23 +21,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: frontend/package-lock.json
 
       - name: Install Dependencies
         working-directory: frontend
-        run: npm ci
+        run: npm install
 
       - name: Build
         working-directory: frontend
         run: npx ng build --base-href=/task-manager/
 
       - name: Add 404 page for Angular Routing
-        working-directory: frontend
-        run: cp dist/new/browser/index.html dist/new/browser/404.html
-
-      - name: Debug - List build output
-        run: ls -R frontend/dist/new/browser
+        run: cp frontend/dist/new/browser/index.html frontend/dist/new/browser/404.html
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
