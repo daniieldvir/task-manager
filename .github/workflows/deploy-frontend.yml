@@ -36,9 +36,12 @@ jobs:
         working-directory: frontend
         run: cp dist/new/browser/index.html dist/new/browser/404.html
 
+      - name: Debug - List build output
+        run: ls -R frontend/dist/new/browser
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: frontend/dist/new/browser
           branch: gh-pages
-          token: ${{ secrets.GITHUB_TOKEN }}
+          clean: true
