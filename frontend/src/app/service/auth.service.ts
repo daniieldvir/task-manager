@@ -5,7 +5,9 @@ import { AuthResponse } from '../models/auth-response.models';
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
+  apiUrl: window.location.hostname === 'localhost'
+    ? 'http://localhost:3000'
+    : 'https://project-backend-name.onrender.com', // כאן תשימי את הלינק שתקבלי מ-Render
 };
 
 @Injectable({

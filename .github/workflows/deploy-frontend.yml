@@ -1,0 +1,38 @@
+name: Deploy Frontend to GitHub Pages
+
+on:
+  push:
+    branches: [ main ] # ודאי שזה שם ה-branch הראשי שלך
+    paths:
+      - 'frontend/**' # ירוץ רק אם נעשו שינויים בתיקיית הפרונט
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build
+        working-directory: frontend
+        run: npx ng build --base-href=/task-manager/
+
+      - name: Add 404 page for Angular Routing
+        working-directory: frontend
+        run: cp dist/new/browser/index.html dist/new/browser/404.html
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: frontend/dist/new/browser
+          branch: gh-pages
