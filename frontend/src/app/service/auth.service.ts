@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   apiUrl: window.location.hostname === 'localhost'
     ? 'http://localhost:3000'
-    : 'https://project-backend-name.onrender.com', // כאן תשימי את הלינק שתקבלי מ-Render
+    : 'https://task-manager-55wy.onrender.com',
 };
 
 @Injectable({
