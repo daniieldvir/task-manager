@@ -4,10 +4,8 @@ import { Observable } from 'rxjs';
 import { AuthResponse } from '../models/auth-response.models';
 
 export const environment = {
-  production: false,
-  apiUrl: window.location.hostname === 'localhost'
-    ? 'http://localhost:3000'
-    : 'https://task-manager-55wy.onrender.com',
+  production: true,
+  apiUrl: 'https://task-manager-55wy.onrender.com'
 };
 
 @Injectable({
