@@ -1,11 +1,8 @@
-# Deployment workflow for Angular frontend
 name: Deploy Frontend to GitHub Pages
 
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'frontend/**'
   workflow_dispatch:
 
 permissions:
@@ -16,21 +13,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install Dependencies
-        working-directory: frontend
-        run: npm install
+      - name: Build Angular
+        run: |
+          cd frontend
+          npm install
+          npx ng build --base-href=/task-manager/
+          # Ensure the output directory exists
+          ls -R dist/new/browser
 
-      - name: Build
-        working-directory: frontend
-        run: npx ng build --base-href=/task-manager/
-
-      - name: Add 404 page for Angular Routing
+      - name: Prepare 404 page
         run: cp frontend/dist/new/browser/index.html frontend/dist/new/browser/404.html
 
       - name: Deploy to GitHub Pages
@@ -38,4 +37,5 @@ jobs:
         with:
           folder: frontend/dist/new/browser
           branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
           clean: true
