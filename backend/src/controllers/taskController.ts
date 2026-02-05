@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 import { supabase } from "../supabaseClient";
 
-// קריאת משימות עם Pagination
+// Get tasks with pagination
 export const getTasks = async (req: Request, res: Response) => {
     const page = parseInt(req.query.page as string) || 0;
     const pageSize = parseInt(req.query.pageSize as string) || 3;

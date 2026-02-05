@@ -2,9 +2,10 @@ name: Deploy Frontend to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # ודאי שזה שם ה-branch הראשי שלך
+    branches: [ main ]
     paths:
-      - 'frontend/**' # ירוץ רק אם נעשו שינויים בתיקיית הפרונט
+      - 'frontend/**'
+  workflow_dispatch:
 
 jobs:
   deploy:

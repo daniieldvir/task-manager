@@ -6,7 +6,7 @@ import taskRoutes from './routes/taskRoutes';
 
 const app = express();
 
-// ⚡ middleware CORS
+// CORS middleware
 const corsOptions = {
     origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
         const allowedOrigins = [
@@ -29,7 +29,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// ⚡ חשוב: להתמודד עם כל OPTIONS preflight
+// Handle all OPTIONS preflight requests
 app.options(/.*/, cors(corsOptions));
 
 // JSON body parser
