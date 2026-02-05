@@ -8,6 +8,9 @@ on:
       - 'frontend/**'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -38,3 +41,4 @@ jobs:
         with:
           folder: frontend/dist/new/browser
           branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
